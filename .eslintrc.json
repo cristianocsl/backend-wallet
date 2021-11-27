@@ -3,11 +3,8 @@
         "browser": true,
         "es2021": true
     },
-    "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaVersion": 13,
-        "sourceType": "module"
-    },
+    "extends": "trybe-backend",
     "rules": {
+      "sonarjs/no-duplicate-string": ["error", 5]
     }
 }

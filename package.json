@@ -6,13 +6,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js, .jsx"
   },
   "author": "Cristiano Seabra de Lima",
   "license": "ISC",
   "devDependencies": {
     "body-parser": "^1.19.0",
     "eslint": "^8.3.0",
+    "eslint-config-trybe-backend": "^1.0.4",
+    "eslint-config-trybe-frontend": "^1.2.1",
     "express": "^4.17.1",
     "express-rescue": "^1.1.31",
     "joi": "^17.4.2",
