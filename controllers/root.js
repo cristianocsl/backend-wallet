@@ -1,5 +1,5 @@
 const express = require('express');
-const userRouter = require('./users/router');
+const userRouter = require('./users/routerUser');
 
 const root = express.Router({ mergeParams: true });
 
