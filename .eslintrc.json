@@ -1,10 +1,13 @@
 {
     "env": {
-        "browser": true,
-        "es2021": true
+        "commonjs": true,
+        "es2021": true,
+        "node": true
     },
     "extends": "trybe-backend",
+    "parserOptions": {
+        "ecmaVersion": 13
+    },
     "rules": {
-      "sonarjs/no-duplicate-string": ["error", 5]
     }
 }
