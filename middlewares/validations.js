@@ -21,8 +21,7 @@ const ERR_REGISTER = {
 const SCHEMA_LOGIN = {
   email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
     .messages(ERR_LOGIN),
-  password: Joi.string().min(8).alphanum().required()
-    .messages(ERR_LOGIN),
+  password: Joi.string().min(8).required().messages(ERR_LOGIN),
 };
 
 const SCHEMA_REGIS = {

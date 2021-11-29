@@ -4,7 +4,8 @@ const controllerUser = require('./index');
 const routerUser = express.Router({ mergeParams: true });
 
 controllerUser.userRegister(routerUser);
+controllerUser.userLogin(routerUser);
 
 module.exports = (root) => {
-  root.use('/users', routerUser);
+  root.use('/user', routerUser);
 };
