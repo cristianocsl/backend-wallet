@@ -10,9 +10,11 @@ const userRegister = rescue(
 
     const { confirmPassword, ...otherInfos } = req.body;
 
-    const createdUser = await serviceUser.createUser(otherInfos);
+    const newUser = await serviceUser.createUser(otherInfos);
 
-    res.status(200).json(createdUser);
+    if (newUser.err) return next(newUser.err);
+
+    res.status(200).json(newUser);
   },
 );
 
