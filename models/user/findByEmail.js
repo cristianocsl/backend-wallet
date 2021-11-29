@@ -1,13 +1,13 @@
 const connection = require('../connection');
 
-const findByEmail = async (userInfos) => {
-  const email = await connection()
-  .then((db) => db
-    .collection('users')
-    .findOne({ userInfos }));
+const findByEmail = async (email) => {
+  const db = await connection();
+
+  const repetedEmail = await db.collection('users').findOne({ email });
+
+  if (!repetedEmail) return null;
   
-  if (!email) return null;
-  return email;
+  return repetedEmail;
 };
 
   module.exports = findByEmail;
