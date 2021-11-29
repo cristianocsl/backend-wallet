@@ -9,6 +9,7 @@ const errorHandler = (err, _req, res, _next) => {
     invalidData: 422,
     notFound: 404,
     stockProblem: 404,
+    unauthenticated: 401,
   };
 
   const status = statusByErrorCode[err.code] || 500;

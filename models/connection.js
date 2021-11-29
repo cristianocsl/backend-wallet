@@ -3,7 +3,7 @@ const { MongoClient } = require('mongodb');
 require('dotenv').config();
 
 const MONGO_DB_URL = `mongodb://${process.env.HOST}:27017/`;
-const DB_NAME = 'StoreManager';
+const DB_NAME = 'backendWallet';
 
 let db = null;
 
