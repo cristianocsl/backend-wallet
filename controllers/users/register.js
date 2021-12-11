@@ -1,20 +1,22 @@
 const rescue = require('express-rescue');
-const middlew = require('../../middlewares/validations');
-const serviceUser = require('../../service/users');
+const { validateRegister } = require('../../middlewares/validations');
+const { createUser } = require('../../service/users');
 
 const userRegister = rescue(
   async (req, res, next) => {
-    const { error } = await middlew.validateRegister(req.body);
+    const reqBody = req.body;
+
+    const { error } = await validateRegister(reqBody);
 
     if (error) return next(error);
 
-    const { confirmPassword, ...otherInfos } = req.body;
+    const { confirmPassword, ...otherInfos } = reqBody;
 
-    const newUser = await serviceUser.createUser(otherInfos);
+    const newUser = await createUser(otherInfos);
 
     if (newUser.err) return next(newUser.err);
 
-    res.status(200).json(newUser);
+    res.status(200).json('Usuário criado com sucesso!');
   },
 );
 

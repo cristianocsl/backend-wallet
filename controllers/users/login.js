@@ -1,23 +1,22 @@
-const jwt = require('jsonwebtoken');
 const rescue = require('express-rescue');
-const middlew = require('../../middlewares/validations');
-
-const { JWT_SECRET } = process.env;
+const { validateLogin } = require('../../middlewares/validations');
+const { login } = require('../../service/users');
 
 const userLogin = rescue(
   async (req, res, next) => {
-    const { error } = await middlew.validateLogin(req.body);
+    const reqBody = req.body;
+
+    const { error } = await validateLogin(reqBody);
+
     if (error) return next(error);
 
-    const payload = {
-      email: req.body.email,
-      admin: false,
-    };
+    const { user } = req;
 
-    const jwtConfig = { expiresIn: '1h', algorithm: 'HS256' };
+    const reqBodyUser = { ...reqBody, user };
 
-    const token = jwt.sign(payload, JWT_SECRET, jwtConfig);
-    res.status(200).json({ token });
+    const token = await login(reqBodyUser);
+
+    return res.status(200).json(token);
   },
 );
 
