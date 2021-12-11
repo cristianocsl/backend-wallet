@@ -1,24 +1,23 @@
 const jwt = require('jsonwebtoken');
-const rescue = require('express-rescue');
-const controllerUser = require('../controllers/users').me;
-// const { StatusCodes } = require('http-status-codes');
+// const rescue = require('express-rescue');
+const { UNAUTHORIZED } = require('http-status-codes').StatusCodes;
 
 const { JWT_SECRET } = process.env;
 
 const MSG_NOT_INF = { err: { code: 'unauthenticated', message: 'Informe o token' } };
 
-const authentHandler = rescue(
-  async (req, _res, next) => {
-    const { authorization } = req.headers;
-    if (!authorization) return next(MSG_NOT_INF);
+const authentication = async (req, res, next) => {
+  const token = req.headers.authorization;
+  if (!token) return next(MSG_NOT_INF);
 
-    const payload = jwt.verify(authorization, JWT_SECRET);
-
-    req.user = payload; // payload é armazenado no objeto da request na nova chave 'user'
+  try {
+    const user = jwt.verify(token, JWT_SECRET);
+  
+    req.user = user; // payload é armazenado no objeto da request na nova chave 'user'
     return next();
-  },
-);
-
-module.exports = (app) => {
-  app.use('/auth', authentHandler, controllerUser);
+  } catch (err) {
+    next(res.status(UNAUTHORIZED).json(MSG_NOT_INF));
+  }
 };
+
+module.exports = authentication;
