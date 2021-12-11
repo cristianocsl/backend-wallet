@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-// const rescue = require('express-rescue');
 const { UNAUTHORIZED } = require('http-status-codes').StatusCodes;
 
 const { JWT_SECRET } = process.env;
@@ -13,7 +12,7 @@ const authentication = async (req, res, next) => {
   try {
     const user = jwt.verify(token, JWT_SECRET);
   
-    req.user = user; // payload é armazenado no objeto da request na nova chave 'user'
+    req.user = user; // os dados da variável user são armazenados no objeto da request na nova chave 'user'
     return next();
   } catch (err) {
     next(res.status(UNAUTHORIZED).json(MSG_NOT_INF));
