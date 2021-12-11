@@ -2,13 +2,17 @@ const { findByEmail } = require('../../models/user');
 const tokenGenerator = require('./tokenGenerator');
 
 const login = async (body) => {
-  const { email } = body;
+  const { email, password: inputPassword } = body;
 
   const user = await findByEmail(email);
 
-  if (!user) return 'este usuário não está cadastrado';
+  const { password, firstName, lastName } = user;
 
-  const token = tokenGenerator();
+  if (!user || inputPassword !== password) return { unauthent: true };
+
+  const payload = { firstName, lastName, email };
+
+  const token = tokenGenerator(payload);
 
   return { token };
 };

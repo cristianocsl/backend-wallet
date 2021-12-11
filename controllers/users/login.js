@@ -10,13 +10,11 @@ const userLogin = rescue(
 
     if (error) return next(error);
 
-    const { user } = req;
+    const tokenOrError = await login(reqBody);
 
-    const reqBodyUser = { ...reqBody, user };
+    if (tokenOrError.unaunthent) return next(tokenOrError);
 
-    const token = await login(reqBodyUser);
-
-    return res.status(200).json(token);
+    return res.status(200).json(tokenOrError);
   },
 );
 
