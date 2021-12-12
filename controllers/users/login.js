@@ -1,4 +1,5 @@
 const rescue = require('express-rescue');
+const { OK } = require('http-status-codes').StatusCodes;
 const { validateLogin } = require('../../middlewares/validateRegistration');
 const { login } = require('../../service/users');
 
@@ -12,9 +13,9 @@ const userLogin = rescue(
 
     const tokenOrError = await login(reqBody);
 
-    if (tokenOrError.unaunthent) return next(tokenOrError);
+    if (tokenOrError.unauthent) return next(tokenOrError);
 
-    return res.status(200).json(tokenOrError);
+    return res.status(OK).json(tokenOrError);
   },
 );
 

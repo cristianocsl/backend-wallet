@@ -8,7 +8,7 @@ const login = async (body) => {
 
   const { password, firstName, lastName } = user;
 
-  if (!user || inputPassword !== password) return { unaunthent: true };
+  if (!user || inputPassword !== password) return { unauthent: true };
 
   const payload = { firstName, lastName, email };
 
