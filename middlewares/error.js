@@ -1,3 +1,7 @@
+const throwError = require('./throwErrorFunctions');
+
+const status = 500;
+
 const errorHandler = (err, _req, res, _next) => {
   if (err.isJoi) {
     return res.status(422).json({
@@ -5,18 +9,10 @@ const errorHandler = (err, _req, res, _next) => {
     });
   }
 
-  const statusByErrorCode = {
-    invalidData: 422,
-    notFound: 404,
-    stockProblem: 404,
-    unauthenticated: 401,
-  };
+  throwError.emailExists(err, res);
+  throwError.unauthent(err, res);
 
-  const status = statusByErrorCode[err.code] || 500;
-
-  res.status(status).json({
-    err: { code: err.code, message: err.message },
-  });
+  return res.status(status).json({ message: err.message });
 };
 
 module.exports = (app) => {

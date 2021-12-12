@@ -1,12 +1,10 @@
 const express = require('express');
-const controllerUser = require('./index');
+const { authentication } = require('../../middlewares');
+const controller = require('./index');
 
 const routerUser = express.Router({ mergeParams: true });
 
-controllerUser.userRegister(routerUser);
-controllerUser.userLogin(routerUser);
-controllerUser.me(routerUser);
+routerUser.post('/', controller.createUser);
+routerUser.post('/login', authentication, controller.login);
 
-module.exports = (root) => {
-  root.use('/user', routerUser);
-};
+module.exports = routerUser;

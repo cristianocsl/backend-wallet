@@ -1,10 +1,8 @@
 const express = require('express');
-const userRouter = require('./users/routerUser');
+const routerUser = require('./users/routerUser');
 
 const root = express.Router({ mergeParams: true });
 
-userRouter(root);
+root.use('/users', routerUser);
 
-module.exports = (app) => {
-  app.use('/', root);
-};
+module.exports = root;
