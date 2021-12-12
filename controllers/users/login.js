@@ -1,5 +1,5 @@
 const rescue = require('express-rescue');
-const { validateLogin } = require('../../middlewares/validations');
+const { validateLogin } = require('../../middlewares/validateRegistration');
 const { login } = require('../../service/users');
 
 const userLogin = rescue(
