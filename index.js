@@ -10,6 +10,6 @@ const PORT = 3000;
 app.use(bodyParser.json());
 
 app.use('/', root);
-error(app);
+app.use(error);
 
 app.listen(PORT, () => console.log(`Ouvindo na porta ${PORT}`));

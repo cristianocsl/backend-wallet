@@ -15,6 +15,4 @@ const errorHandler = (err, _req, res, _next) => {
   return res.status(status).json({ message: err.message });
 };
 
-module.exports = (app) => {
-  app.use(errorHandler);
-};
+module.exports = errorHandler;

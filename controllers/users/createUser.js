@@ -8,7 +8,6 @@ const createUser = rescue(
 
     const { error } = await validateRegister(reqBody);
 
-    console.log('result');
     if (error) return next(error);
 
     const { confirmPassword, ...otherInfos } = reqBody;
@@ -17,7 +16,7 @@ const createUser = rescue(
 
     if (result.emailExists) return next(result);
 
-    res.status(200).json('Usuário criado com sucesso!');
+    return res.status(200).json('Usuário criado com sucesso!');
   },
 );
 
