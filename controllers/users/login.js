@@ -15,7 +15,10 @@ const login = rescue(
 
     if (tokenOrError.unauthent) return next(tokenOrError);
 
-    return res.status(OK).json(tokenOrError);
+    return res.status(OK).json({
+      message: 'Login efetuado com sucesso!',
+      ...tokenOrError,
+    });
   },
 );
 
