@@ -4,7 +4,7 @@ class ApiError {
     this.message = message;
   }
 
-  static Error(obj) {
+  static AppErrors(obj) {
     const { code, message } = obj;
     throw new ApiError(code, message);
   }

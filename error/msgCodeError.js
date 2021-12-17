@@ -1,6 +1,6 @@
 const { UNAUTHORIZED, CONFLICT } = require('http-status-codes').StatusCodes;
 
-const INVALID_ENTRIES = {
+const INCORRECT_LOGIN = {
   code: UNAUTHORIZED,
   message: 'Incorrect email or password.',
 };
@@ -11,6 +11,6 @@ const EMAIL_EXISTING = {
 };
 
 module.exports = {
-  INVALID_ENTRIES,
+  INCORRECT_LOGIN,
   EMAIL_EXISTING,
 };

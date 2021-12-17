@@ -10,14 +10,12 @@ const login = rescue(
     const { error } = await validateLogin(reqBody);
 
     if (error) return next(error);
-
-    const tokenOrError = await service.login(reqBody);
-
-    if (tokenOrError.unauthent) return next(tokenOrError);
-
+    
+    const token = await service.login(reqBody);
+    
     return res.status(OK).json({
       message: 'Login efetuado com sucesso!',
-      ...tokenOrError,
+      ...token,
     });
   },
 );
