@@ -1,11 +1,11 @@
 const express = require('express');
 const { authentication } = require('../../middlewares');
-const { createUser, login } = require('./index');
+const { createUser, login, getUserInfo } = require('./index');
 
 const routerUser = express.Router({ mergeParams: true });
 
 routerUser.post('/', createUser);
 routerUser.post('/login', login);
-routerUser.get('/info', authentication);
+routerUser.get('/info', authentication, getUserInfo);
 
 module.exports = routerUser;
