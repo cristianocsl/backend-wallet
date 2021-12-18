@@ -1,4 +1,5 @@
 const rescue = require('express-rescue');
+const { OK } = require('http-status-codes').StatusCodes;
 const { expense } = require('../../service/expense');
 
 const createExpense = rescue(
@@ -7,9 +8,12 @@ const createExpense = rescue(
 
     const { user } = req;
 
-    await expense(reqBody, user);
+    const expenseInfo = await expense(reqBody, user);
 
-    return res.status(200).json({ message: 'Despesa criada com sucesso!' });
+    return res.status(OK).json({
+      message: 'Despesa criada com sucesso!',
+      expenseInfo,
+    });
   },
 );
 
