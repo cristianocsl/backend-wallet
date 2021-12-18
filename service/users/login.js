@@ -10,6 +10,8 @@ const login = async (body) => {
 
   const user = await findByEmail(email);
 
+  console.log('user', user);
+
   if (!user || inputPassword !== user.password) return AppErrors(INCORRECT_LOGIN);
 
   const { firstName, lastName } = user;

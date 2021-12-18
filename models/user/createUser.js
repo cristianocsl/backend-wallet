@@ -5,4 +5,4 @@ const createUser = async (userInfos) => {
   await db.collection('users').insertOne(userInfos); // com userInfos entre chaves, o objeto retornado deixa de vir com a chave _id repetida.
 };
 
-  module.exports = createUser;
+module.exports = createUser;
