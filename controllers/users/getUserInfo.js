@@ -3,8 +3,9 @@ const rescue = require('express-rescue');
 const { userInfo } = require('../../service/users');
 
 const getUserInfo = rescue(
-  async (_req, res, _next) => {
-    const info = await userInfo();
+  async (req, res, _next) => {
+    const { user } = req;
+    const info = await userInfo(user);
     return res.status(OK).json(info);
   },
 );

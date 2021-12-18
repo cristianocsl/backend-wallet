@@ -14,7 +14,7 @@ const createUser = rescue(
 
     const result = await service.createUser(otherInfos);
 
-    if (result.emailExists) return next(result);
+    if (result) return next(result);
 
     return res.status(200).json('Usuário criado com sucesso!');
   },
