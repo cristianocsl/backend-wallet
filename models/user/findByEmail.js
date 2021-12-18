@@ -6,7 +6,8 @@ const findByEmail = async (email) => {
   const repetedEmail = await db.collection('users').findOne({ email });
 
   if (!repetedEmail) return null;
-  
+  console.log('repetedEmail', repetedEmail);
+
   return repetedEmail;
 };
 
