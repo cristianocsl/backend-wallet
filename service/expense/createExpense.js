@@ -6,7 +6,8 @@ const expense = async (reqBody, userInfo) => {
   const { email } = userInfo;
   const { _id } = await findByEmail(email);
   const userId = ObjectId(_id).toString();
-  await createExpense(reqBody);
+
+  await createExpense(reqBody, _id);
   return {
     ...reqBody,
     userId,

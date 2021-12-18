@@ -12,9 +12,9 @@ const login = async (body) => {
 
   if (!user || inputPassword !== user.password) return AppErrors(INCORRECT_LOGIN);
 
-  const { firstName, lastName } = user;
+  const { firstName, lastName, _id } = user;
 
-  const payload = { firstName, lastName, email };
+  const payload = { firstName, lastName, email, _id };
 
   const token = tokenGenerator(payload);
 
