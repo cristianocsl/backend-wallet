@@ -1,4 +1,4 @@
-const { findByEmail } = require('../../models/user');
+const { findUser } = require('../../models/user');
 const { ApiError } = require('../../error/apiError');
 const { INCORRECT_LOGIN } = require('../../error/msgCodeError');
 const tokenGenerator = require('./tokenGenerator');
@@ -8,13 +8,13 @@ const { AppErrors } = ApiError;
 const login = async (body) => {
   const { email, password: inputPassword } = body;
 
-  const user = await findByEmail(email);
+  const user = await findUser(email);
 
   if (!user || inputPassword !== user.password) return AppErrors(INCORRECT_LOGIN);
 
-  const { firstName, lastName, _id } = user;
+  const { password, _id, ...others } = user;
 
-  const payload = { firstName, lastName, email, _id };
+  const payload = { ...others, _id: _id.toString() };
 
   const token = tokenGenerator(payload);
 

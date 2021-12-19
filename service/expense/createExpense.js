@@ -1,17 +1,11 @@
-const { ObjectId } = require('mongodb');
 const { createExpense } = require('../../models/expense');
-const { findByEmail } = require('../../models/user');
 
 const expense = async (reqBody, userInfo) => {
-  const { email } = userInfo;
-  const { _id } = await findByEmail(email);
-  const userId = ObjectId(_id).toString();
+  const { _id: userId } = userInfo;
+  const expenseInfo = { ...reqBody, userId };
+  const insertedId = await createExpense(expenseInfo);
 
-  await createExpense(reqBody, _id);
-  return {
-    ...reqBody,
-    userId,
-  };
+  return { _id: insertedId, userId, ...reqBody };
 };
 
 module.exports = expense;
