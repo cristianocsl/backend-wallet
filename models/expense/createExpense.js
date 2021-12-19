@@ -1,8 +1,9 @@
 const connection = require('../connection');
 
-const createExpense = async (expenseInfo, userId) => {
+const createExpense = async (expenseInfo) => {
   const db = await connection();
-  await db.collection('expense').insertOne({ ...expenseInfo });
+  const { insertedId } = await db.collection('expense').insertOne(expenseInfo);
+  return insertedId;
 };
 
 module.exports = createExpense;
