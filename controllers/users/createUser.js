@@ -1,6 +1,6 @@
 const rescue = require('express-rescue');
 const { OK } = require('http-status-codes').StatusCodes;
-const { validateRegister } = require('../../middlewares/validateRegistration');
+const { validateRegister } = require('../../validations');
 const { createUser: registerUser } = require('../../service/users');
 
 const createUser = rescue(
