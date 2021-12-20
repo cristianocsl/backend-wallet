@@ -1,9 +1,9 @@
-const expense = require('./createExpense');
+const createExpense = require('./createExpense');
 const updateExpense = require('./updateExpense');
 const deleteExpense = require('./deleteExpense');
 
 module.exports = {
-  expense,
+  createExpense,
   updateExpense,
   deleteExpense,
 };

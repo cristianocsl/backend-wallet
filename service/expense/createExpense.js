@@ -1,11 +1,11 @@
-const { createExpense } = require('../../models/expense');
+const { createExpense: expense } = require('../../models/expense');
 
-const expense = async (reqBody, userInfo) => {
+const createExpense = async (reqBody, userInfo) => {
   const { _id: userId } = userInfo;
   const expenseInfo = { ...reqBody, userId };
-  const insertedId = await createExpense(expenseInfo);
+  const insertedId = await expense(expenseInfo);
 
   return { _id: insertedId, userId, ...reqBody };
 };
 
-module.exports = expense;
+module.exports = createExpense;

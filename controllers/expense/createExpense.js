@@ -1,6 +1,6 @@
 const rescue = require('express-rescue');
 const { OK } = require('http-status-codes').StatusCodes;
-const { expense } = require('../../service/expense');
+const { createExpense: expense } = require('../../service/expense');
 
 const createExpense = rescue(
   async (req, res, _next) => {
