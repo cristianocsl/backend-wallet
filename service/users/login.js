@@ -12,7 +12,7 @@ const login = async (body) => {
 
   if (!user || inputPassword !== user.password) return AppErrors(INCORRECT_LOGIN);
 
-  const { password, _id, ...others } = user;
+  const { password, birthDate, _id, ...others } = user;
 
   const payload = { ...others, _id: _id.toString() };
 
