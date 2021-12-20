@@ -4,7 +4,7 @@ const userInfo = async (reqUser) => {
   const { email, firstName, lastName, _id } = reqUser;
   const expenses = await getExpenses(_id);
 
-  const sum = expenses.reduce((acc, curr) => acc.value + curr.value);
+  const sum = expenses.reduce((acc, curr) => (acc + curr.value), 0);
 
   return {
     name: `${firstName} ${lastName}`,
