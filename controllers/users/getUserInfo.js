@@ -5,8 +5,8 @@ const { userInfo } = require('../../service/users');
 const getUserInfo = rescue(
   async (req, res, _next) => {
     const { user } = req;
-    const info = await userInfo(user);
-    return res.status(OK).json(info);
+    const userWallet = await userInfo(user);
+    return res.status(OK).json({ userWallet });
   },
 );
 
