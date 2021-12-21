@@ -1,4 +1,4 @@
-const Joi = require('@hapi/joi');
+const Joi = require('@hapi/joi').extend(require('@hapi/joi-date'));
 
 const STRONG_PASSWORD = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/;
 
@@ -10,7 +10,7 @@ const ERR_LOGIN = {
 };
 const ERR_REGISTER = {
   'any.required': 'Este campo é obrigatório.',
-  'date.iso': 'Data no formato inválido', // PROCURAR FORMATO date.iso ou outros
+  'date.format': 'Data no formato inválido', // PROCURAR FORMATO date.iso ou outros
   'string.base': 'Preencha apenas com letras.',
   'string.empty': 'Este campo não pode ser vazio.',
   'string.min': 'Utilize no mínimo de 8 caracteres.',
@@ -30,10 +30,10 @@ const SCHEMA_REGIS = {
   email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
     .messages(ERR_REGISTER),
   password: Joi.string().pattern(STRONG_PASSWORD).messages(ERR_REGISTER),
-  confirmPassword: Joi.string().min(8).required()
-    .messages(ERR_REGISTER),
+  confirmPassword: Joi.string().min(8).required().messages(ERR_REGISTER),
   sex: Joi.string().min(3).required().messages(ERR_REGISTER),
-  birthDate: Joi.date().iso().required().messages(ERR_REGISTER),
+  birthDate: Joi.date().format(['DD-MM-YYYY', 'DD/MM/YYYY']).utc().required()
+.messages(ERR_REGISTER),
 };
 
 const validateLogin = async (body) => Joi.object(SCHEMA_LOGIN).validate(body);
