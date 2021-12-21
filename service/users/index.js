@@ -1,4 +1,4 @@
-const createUser = require('./register');
+const createUser = require('./createUser');
 const login = require('./login');
 const userInfo = require('./userInfo');
 
