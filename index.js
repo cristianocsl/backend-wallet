@@ -10,7 +10,8 @@ const { PORT } = process.env;
 app.use(bodyParser.json());
 
 // console.log(`${__dirname}/dist/`);
-app.use(express.static(__dirname));
+const distDir = `${__dirname}/dist/`;
+ app.use(express.static(distDir));
 
 app.use('/', root);
 app.use(error);
