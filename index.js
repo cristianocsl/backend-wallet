@@ -5,7 +5,7 @@ const root = require('./controllers/root');
 const error = require('./middlewares/error');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const { PORT } = process.env;
 
 app.use(bodyParser.json());
 
