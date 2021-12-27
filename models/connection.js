@@ -3,7 +3,7 @@ const { MongoClient } = require('mongodb');
 require('dotenv').config();
 
 // const MONGO_DB_URL = `mongodb://${process.env.HOST}:27017/`;
-const USERNAME = 'cslcristiano:password>@cluster0.r5ij7.mongodb.net';
+const USERNAME = 'cslcristiano:<password>@cluster0.r5ij7.mongodb.net';
 const MONGO_DB_URL = `mongodb+srv://${USERNAME}/myFirstDatabase?retryWrites=true&w=majority`;
 const DB_NAME = 'backendWallet';
 
