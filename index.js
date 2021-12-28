@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 // console.log(`${__dirname}/dist/`);
 // const distDir = `${__dirname}/dist/`;
 //  app.use(express.static(distDir));
-app.get('/api', (_req, res) => res.status(200).json({ message: 'Heroku funcionando!' }));
+app.get('/', (_req, res) => res.status(200).json({ message: 'Heroku funcionando!' }));
 
 app.use('/', root);
 app.use(error);
