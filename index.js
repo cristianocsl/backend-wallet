@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 //  app.use(express.static(distDir));
 app.get('/', (_req, res) => res.status(200).json({ message: 'Heroku funcionando!' }));
 
-app.use('/', root);
+app.use('/api', root);
 app.use(error);
 
 app.listen(PORT, () => console.log(`Ouvindo na porta ${PORT}`));
