@@ -12,9 +12,9 @@ app.use(bodyParser.json());
 // console.log(`${__dirname}/dist/`);
 // const distDir = `${__dirname}/dist/`;
 //  app.use(express.static(distDir));
-app.get('/', (_req, res) => res.status(200).json({ message: 'Heroku funcionando!' }));
+app.get('/api', (_req, res) => res.status(200).json({ message: 'Heroku funcionando!' }));
 
-app.use('/api', root);
+app.use('/', root);
 app.use(error);
 
 app.listen(PORT, () => console.log(`Ouvindo na porta ${PORT}`));
