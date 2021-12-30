@@ -10,7 +10,7 @@ const DB_NAME = 'backendWallet';
 const connection = () => {
   const client = new MongoClient(MONGO_DB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
   client.connect((err) => {
-    client.db(DB_NAME);
+    client.db(DB_NAME).collection('users');
     // perform actions on the collection object
     client.close();
   });
