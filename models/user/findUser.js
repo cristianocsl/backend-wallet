@@ -1,13 +1,13 @@
-const connection = require('../connection');
+// const connection = require('../connection');
 
-const findUser = async (email) => {
-  const db = await connection();
+// const findUser = async (email) => {
+//   const db = await connection();
 
-  const repetedEmail = await db.collection('users').findOne({ email });
+//   const repetedEmail = await db.collection('users').findOne({ email });
 
-  if (!repetedEmail) return null;
+//   if (!repetedEmail) return null;
 
-  return repetedEmail;
-};
+//   return repetedEmail;
+// };
 
-  module.exports = findUser;
+//   module.exports = findUser;
