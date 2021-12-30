@@ -1,7 +1,7 @@
-const { connection } = require('../connection');
+const { client } = require('../connection');
 
 const findUser = async (email) => {
-  const db = await connection.db('backendWallet');
+  const db = client.db('backendWallet');
 
   const repetedEmail = await db.collection('users').findOne({ email });
 
