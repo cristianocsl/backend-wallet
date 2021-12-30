@@ -1,7 +1,7 @@
-const connection = require('../connection');
+const { client } = require('../connection');
 
 const createExpense = async (expenseInfo) => {
-  const db = await connection();
+  const db = client.db('backendWallet');
   const { insertedId } = await db.collection('expense').insertOne(expenseInfo);
   return insertedId;
 };

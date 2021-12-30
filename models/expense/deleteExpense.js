@@ -1,9 +1,9 @@
 const { ObjectId } = require('mongodb');
-const connection = require('../connection');
+const { client } = require('../connection');
 
 const deleteExpense = async (expenseId) => {
   if (!ObjectId.isValid(expenseId)) return null;
-  const db = await connection();
+  const db = client.db('backendWallet');
   const { value } = await db.collection('expense')
     .findOneAndDelete({ _id: ObjectId(expenseId) });
 

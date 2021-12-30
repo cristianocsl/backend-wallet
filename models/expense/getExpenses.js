@@ -1,7 +1,7 @@
-const connection = require('../connection');
+const { client } = require('../connection');
 
 const getExpenses = async (userId) => {
-  const db = await connection();
+  const db = client.db('backendWallet');
   const expenses = await db.collection('expense').find({ userId }).toArray();
   return expenses;
 };
