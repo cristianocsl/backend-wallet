@@ -1,7 +1,7 @@
-const connection = require('../connection');
+const { connection } = require('../connection');
 
 const createUser = async (userInfos) => {
-  const db = await connection();
+  const db = await connection.db('backendWallet');
   await db.collection('users').insertOne(userInfos); // com userInfos entre chaves, o objeto retornado deixa de vir com a chave _id repetida.
 };
 
