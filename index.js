@@ -17,4 +17,6 @@ app.use(bodyParser.json());
 app.use('/', root);
 app.use(error);
 
+console.log('PORT', PORT);
+
 app.listen(PORT, () => console.log(`Ouvindo na porta ${PORT}`));
