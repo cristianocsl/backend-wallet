@@ -13,8 +13,7 @@ const client = new MongoClient(MONGO_DB_URL, OPTIONS);
 
 const bootStrap = async () => {
   try {
-    client.connect();
-    client.db('backendWallet');
+    client.connect().db('backendWallet');
   } catch (err) {
     console.log('Connection failed');
   }
